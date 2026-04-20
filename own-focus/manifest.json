@@ -1,0 +1,63 @@
+{
+    "manifest_version": 3,
+    "name": "OWN-Focus",
+    "version": "1.0.0",
+    "description": "All-in-one student workspace: AI chat, notes, timers, PDF viewer, YouTube, and focus tools.",
+    "permissions": [
+      "sidePanel",
+      "storage",
+      "tabs",
+      "activeTab",
+      "scripting",
+      "alarms",
+      "notifications",
+      "clipboardRead",
+      "clipboardWrite"
+    ],
+    "host_permissions": [
+      "https://chatgpt.com/*",
+      "https://chat.openai.com/*",
+      "https://claude.ai/*",
+      "https://gemini.google.com/*",
+      "https://www.desmos.com/*",
+      "https://www.youtube.com/*",
+      "https://www.youtube-nocookie.com/*",
+      "https://vid.puffyan.us/*",
+      "https://invidious.snopyta.org/*",
+      "https://invidious.kavin.rocks/*"
+    ],
+    "side_panel": {
+      "default_path": "sidepanel.html"
+    },
+    "action": {
+      "default_icon": {
+        "16": "icons/icons16.png",
+        "48": "icons/icons48.png",
+        "128": "icons/icons128.png"
+      },
+      "default_title": "OWN-Focus"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "icons": {
+      "16": "icons/icons16.png",
+      "48": "icons/icons48.png",
+      "128": "icons/icons128.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["content.js"],
+        "css": ["content.css"],
+        "run_at": "document_idle"
+      }
+    ],
+    "web_accessible_resources": [{
+      "resources": ["lib/pdf.worker.min.js", "icons/icons48.png", "icons/icons128.png"],
+      "matches": ["<all_urls>"]
+    }],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+    }
+  }

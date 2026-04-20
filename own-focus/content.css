@@ -1,0 +1,165 @@
+#own-focus-launcher {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px;
+  border: 1px solid rgba(10, 48, 40, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 30px rgba(10, 48, 40, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: 'Figtree', system-ui, sans-serif;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+}
+
+#own-focus-launcher.is-pending {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#own-focus-launcher.is-dragging {
+  cursor: grabbing;
+  transform: scale(0.985);
+  box-shadow: 0 18px 34px rgba(10, 48, 40, 0.18);
+}
+
+.own-focus-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(10, 48, 40, 0.12);
+  border-radius: 999px;
+  background: rgba(10, 48, 40, 0.06);
+  color: #12201d;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.14s ease, border-color 0.14s ease, transform 0.14s ease, box-shadow 0.14s ease;
+  -webkit-user-drag: none;
+}
+
+.own-focus-launcher-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.own-focus-launcher-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(10, 48, 40, 0.12);
+  border-radius: 999px;
+  background: rgba(10, 48, 40, 0.06);
+  color: #07332c;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.14s ease, border-color 0.14s ease, transform 0.14s ease;
+}
+
+#own-focus-launcher.is-minimized {
+  padding-right: 7px;
+}
+
+#own-focus-launcher.is-minimized .own-focus-launcher-actions {
+  display: none;
+}
+
+#own-focus-launcher.is-minimized .own-focus-open-btn span {
+  display: none;
+}
+
+#own-focus-launcher.is-minimized .own-focus-open-btn {
+  min-width: 34px;
+  padding: 0;
+  justify-content: center;
+}
+
+#own-focus-launcher img,
+.own-focus-open-btn,
+.own-focus-launcher-btn {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+#own-focus-launcher img {
+  width: 26px;
+  height: 26px;
+  display: block;
+  pointer-events: none;
+}
+
+.own-focus-open-btn:hover,
+.own-focus-launcher-btn:hover {
+  background: rgba(10, 48, 40, 0.1);
+  border-color: rgba(10, 48, 40, 0.2);
+}
+
+.own-focus-open-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(10, 48, 40, 0.1);
+}
+
+#own-focus-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 20, 0.88);
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, sans-serif;
+    backdrop-filter: blur(4px);
+  }
+  
+  .own-focus-overlay-box {
+    background: linear-gradient(180deg, #171719 0%, #09090a 100%);
+    border: 1px solid rgba(211, 23, 54, 0.35);
+    border-radius: 16px;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  }
+  
+  .own-focus-overlay-icon { font-size: 48px; margin-bottom: 16px; }
+  
+  .own-focus-overlay-box h2 {
+    color: #E5E7EB;
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+  
+  .own-focus-overlay-box p {
+    color: #9CA3AF;
+    font-size: 15px;
+    margin: 0 0 24px;
+  }
+  
+  .own-focus-overlay-btns { display: flex; gap: 12px; justify-content: center; }
+  
+  .own-focus-overlay-btns button {
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  
+  .own-focus-overlay-btns button:first-child {
+    background: linear-gradient(135deg, #c5152e 0%, #760615 100%);
+    color: #ffffff;
+  }

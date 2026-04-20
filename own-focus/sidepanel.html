@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OWN-Focus</title>
+  <link rel="stylesheet" href="sidepanel.css">
+  <link rel="stylesheet" href="delete.css">
+</head>
+<body>
+
+<!-- ══ HOME SCREEN ══════════════════════════════════════════════════════════ -->
+<div id="view-home" class="view active">
+  <header class="home-header">
+    <div class="logo-row">
+      <div class="logo"><span class="logo-mark">OWN</span><span class="logo-focus">-Focus</span></div>
+    </div>
+    <p class="home-motivation">Eliminate distraction.<br>Do the work.</p>
+  </header>
+  <nav class="tool-grid">
+    <button class="tool-card" data-tool="ai-chat" title="AI Chat (1)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/AI .png" alt="AI Chat icon"></span><span class="tool-label">AI Chat</span>
+    </button>
+    <button class="tool-card" data-tool="desmos" title="Desmos (2)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/Desmos.png" alt="Desmos icon"></span><span class="tool-label">Desmos</span>
+    </button>
+    <button class="tool-card" data-tool="youtube" title="YouTube (3)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/YouTube.png" alt="YouTube icon"></span><span class="tool-label">YouTube</span>
+    </button>
+    <button class="tool-card" data-tool="pdf-viewer" title="PDF Viewer (4)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/PDF.png" alt="PDF icon"></span><span class="tool-label">PDF Viewer</span>
+    </button>
+    <button class="tool-card" data-tool="pomodoro" title="Pomodoro (5)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/Pomodoro.png" alt="Pomodoro icon"></span><span class="tool-label">Pomodoro</span>
+    </button>
+    <button class="tool-card" data-tool="stopwatch" title="Stopwatch (6)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/stopwatch.png" alt="Stopwatch icon"></span><span class="tool-label">Stopwatch</span>
+    </button>
+    <button class="tool-card" data-tool="notes" title="Notes (7)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/Notes.png" alt="Notes icon"></span><span class="tool-label">Notes</span>
+    </button>
+    <button class="tool-card" data-tool="clipboard" title="Clipboard (8)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/clipboard.png" alt="Clipboard icon"></span><span class="tool-label">Clipboard</span>
+    </button>
+    <button class="tool-card" data-tool="todo" title="Todo (9)">
+      <span class="tool-icon"><img class="tool-icon-img" src="icons/APP icons own focus/todo.png" alt="Todo icon"></span><span class="tool-label">Todo</span>
+    </button>
+  </nav>
+  <button class="focus-first-card" data-tool="lock-in" title="Open Focus Mode">
+    <div>
+      <div class="home-focus-label">Ready to lock in?</div>
+      <div class="home-focus-value">Begin Deep Session</div>
+    </div>
+    <span class="focus-first-card-arrow">›</span>
+  </button>
+</div>
+
+<!-- ══ AI CHAT ══════════════════════════════════════════════════════════════ -->
+<div id="view-ai-chat" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">AI Chat</span>
+    <button class="icon-btn delete-btn delete-btn-compact" id="ai-reset-btn" title="Reset AI view" aria-label="Reset AI view">
+      <span class="delete-btn-trash" aria-hidden="true"></span>
+      <span class="delete-btn-text">Reset</span>
+    </button>
+  </div>
+  <div class="ai-tab-bar">
+    <button class="ai-tab active" data-ai="chatgpt">
+      <span class="ai-tab-icon ai-tab-icon-chatgpt"><img src="icons/ChatGPT1.png" alt="ChatGPT"></span>
+      <span>ChatGPT</span>
+    </button>
+    <button class="ai-tab" data-ai="claude">
+      <span class="ai-tab-icon ai-tab-icon-claude"><img src="icons/claude1.png" alt="Claude"></span>
+      <span>Claude</span>
+    </button>
+    <button class="ai-tab" data-ai="gemini">
+      <span class="ai-tab-icon ai-tab-icon-gemini"><img src="icons/Gemini1.png" alt="Gemini"></span>
+      <span>Gemini</span>
+    </button>
+  </div>
+  <div class="iframe-container" id="ai-iframe-container">
+    <div class="iframe-error hidden" id="ai-error"></div>
+  </div>
+</div>
+
+<!-- ══ DESMOS ════════════════════════════════════════════════════════════════ -->
+<div id="view-desmos" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Desmos</span>
+    <button class="icon-btn" id="desmos-popout" title="Pop out to window">⤢</button>
+  </div>
+  <div class="iframe-container" id="desmos-iframe-container"></div>
+</div>
+
+<!-- ══ YOUTUBE ═══════════════════════════════════════════════════════════════ -->
+<div id="view-youtube" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">YouTube</span>
+    <button class="icon-btn delete-btn delete-btn-compact" id="youtube-clear-btn" title="Clear YouTube" aria-label="Clear YouTube">
+      <span class="delete-btn-trash" aria-hidden="true"></span>
+      <span class="delete-btn-text">Clear</span>
+    </button>
+  </div>
+  <div id="youtube-content">
+    <div id="youtube-player-container" class="hidden"></div>
+    <div class="youtube-search-bar">
+      <input type="text" id="youtube-search-input" placeholder="Search YouTube...">
+      <button id="youtube-search-btn">Search</button>
+    </div>
+    <div id="youtube-results"></div>
+    <div id="youtube-history"></div>
+  </div>
+</div>
+
+<!-- ══ PDF VIEWER ════════════════════════════════════════════════════════════ -->
+<div id="view-pdf-viewer" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">PDF Viewer</span>
+  </div>
+  <div id="pdf-sidebar-view">
+    <div class="pdf-drop-zone" id="pdf-drop-zone">
+      <p>Drop a PDF here</p>
+      <p class="muted-copy">or</p>
+      <button class="btn-amber" id="pdf-open-btn">Open PDF</button>
+      <input type="file" id="pdf-file-input" class="hidden-file-input" accept=".pdf">
+    </div>
+    <div id="pdf-controls" class="hidden">
+      <span id="pdf-page-info">0 pages</span>
+      <button id="pdf-new-file">New File</button>
+      <button id="pdf-zoom-out">−</button>
+      <span id="pdf-zoom-level">100%</span>
+      <button id="pdf-zoom-in">+</button>
+      <button id="pdf-fit-width">Fit</button>
+      <button id="pdf-marker-toggle">Marker</button>
+      <button class="delete-btn delete-btn-inline" id="pdf-marker-clear" title="Clear marks" aria-label="Clear marks">
+        <span class="delete-btn-trash" aria-hidden="true"></span>
+        <span class="delete-btn-text">Clear</span>
+      </button>
+    </div>
+    <div id="pdf-canvas-wrapper">
+      <div id="pdf-canvas-stack"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CLIPBOARD ════════════════════════════════════════════════════════════ -->
+<div id="view-clipboard" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Clipboard</span>
+    <button class="icon-btn delete-btn delete-btn-compact" id="clipboard-clear-all" title="Clear all" aria-label="Clear all">
+      <span class="delete-btn-trash" aria-hidden="true"></span>
+      <span class="delete-btn-text">Clear</span>
+    </button>
+  </div>
+  <div class="clipboard-layout">
+    <div class="clipboard-actions">
+      <button class="btn-amber" id="clipboard-paste-btn">Paste From Clipboard</button>
+      <button class="btn-secondary" id="clipboard-save-text-btn">Save Typed Text</button>
+    </div>
+    <textarea id="clipboard-input" placeholder="Paste text here or use Cmd/Ctrl+V for text and images copied from websites."></textarea>
+    <div class="clipboard-dropzone" id="clipboard-dropzone">
+      <p>Paste or drop an image from the web here</p>
+    </div>
+    <div id="clipboard-list"></div>
+  </div>
+</div>
+
+<!-- ══ TODO ═════════════════════════════════════════════════════════════════ -->
+<div id="view-todo" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Todo</span>
+    <button class="icon-btn delete-btn delete-btn-compact" id="todo-clear-all-btn" title="Clear all" aria-label="Clear all">
+      <span class="delete-btn-trash" aria-hidden="true"></span>
+      <span class="delete-btn-text">Clear</span>
+    </button>
+    <button class="icon-btn complete-btn" id="todo-clear-done-btn" title="Clear completed" aria-label="Clear completed">
+      <span class="complete-btn-icon">✓</span>
+    </button>
+  </div>
+  <div class="todo-layout">
+    <div class="todo-entry">
+      <input type="text" id="todo-input" placeholder="Add a task you need to finish">
+      <button class="btn-amber" id="todo-add-btn">Add</button>
+    </div>
+    <div class="todo-toolbar">
+      <div class="todo-stats" id="todo-stats">0 tasks</div>
+      <div class="todo-filters">
+        <button class="todo-filter active" data-filter="all">All</button>
+        <button class="todo-filter" data-filter="active">Active</button>
+        <button class="todo-filter" data-filter="done">Done</button>
+      </div>
+    </div>
+    <div id="todo-list"></div>
+  </div>
+</div>
+
+<!-- ══ POMODORO ═══════════════════════════════════════════════════════════════ -->
+<div id="view-pomodoro" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Pomodoro</span>
+    <button class="icon-btn" id="pomo-settings-btn" title="Settings">⚙</button>
+  </div>
+  <div id="pomodoro-content">
+    <div class="pomo-phase-label" id="pomo-phase">Focus Time</div>
+    <div class="pomo-ring-container">
+      <svg class="pomo-ring" viewBox="0 0 120 120">
+        <circle class="pomo-ring-bg" cx="60" cy="60" r="54"/>
+        <circle class="pomo-ring-progress" id="pomo-ring-arc" cx="60" cy="60" r="54"
+          stroke-dasharray="339.3" stroke-dashoffset="0"/>
+      </svg>
+      <div class="pomo-time-display" id="pomo-display">25:00</div>
+    </div>
+    <div class="pomo-cycle-dots" id="pomo-cycle-dots">
+      <span class="dot active"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span>
+    </div>
+    <div class="pomo-controls">
+      <button class="btn-amber pomo-btn" id="pomo-start">Start</button>
+      <button class="btn-secondary pomo-btn" id="pomo-skip">Skip ›</button>
+      <button class="delete-btn delete-btn-inline pomo-btn" id="pomo-reset" title="Reset timer" aria-label="Reset timer">
+        <span class="delete-btn-trash" aria-hidden="true"></span>
+        <span class="delete-btn-text">Reset</span>
+      </button>
+    </div>
+    <div class="pomo-stats">Today: <strong id="pomo-today-time">0m</strong> focused</div>
+  </div>
+  <div id="pomodoro-settings" class="hidden">
+    <h3>Customize Intervals</h3>
+    <label>Work (min): <input type="number" id="pomo-work-mins" value="25" min="1" max="120"></label>
+    <label>Short Break (min): <input type="number" id="pomo-short-mins" value="5" min="1" max="60"></label>
+    <label>Long Break (min): <input type="number" id="pomo-long-mins" value="15" min="1" max="60"></label>
+    <div class="settings-actions">
+      <button class="btn-amber" id="pomo-save-settings">Save</button>
+      <button class="btn-secondary" id="pomo-cancel-settings">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STOPWATCH & TIMER ═════════════════════════════════════════════════════ -->
+<div id="view-stopwatch" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Stopwatch &amp; Timer</span>
+  </div>
+  <div class="sw-tab-bar">
+    <button class="sw-tab active" data-sw="stopwatch">Stopwatch</button>
+    <button class="sw-tab" data-sw="countdown">Timer</button>
+  </div>
+  <div id="sw-stopwatch-view">
+    <div class="sw-display" id="sw-display">00:00.00</div>
+    <div class="sw-controls">
+      <button class="btn-amber sw-btn" id="sw-start">Start</button>
+      <button class="btn-secondary sw-btn" id="sw-lap" disabled>Lap</button>
+      <button class="delete-btn delete-btn-inline sw-btn" id="sw-reset" title="Reset stopwatch" aria-label="Reset stopwatch">
+        <span class="delete-btn-trash" aria-hidden="true"></span>
+        <span class="delete-btn-text">Reset</span>
+      </button>
+    </div>
+    <div id="sw-laps"></div>
+  </div>
+  <div id="sw-countdown-view" class="hidden">
+    <div class="cd-inputs">
+      <div class="cd-field"><input type="number" id="cd-hours" value="0" min="0" max="23"><label>h</label></div>
+      <div class="cd-field"><input type="number" id="cd-mins" value="5" min="0" max="59"><label>m</label></div>
+      <div class="cd-field"><input type="number" id="cd-secs" value="0" min="0" max="59"><label>s</label></div>
+    </div>
+    <div class="cd-presets">
+      <button class="preset-btn" data-mins="5">5m</button>
+      <button class="preset-btn" data-mins="10">10m</button>
+      <button class="preset-btn" data-mins="15">15m</button>
+      <button class="preset-btn" data-mins="30">30m</button>
+      <button class="preset-btn" data-mins="60">1h</button>
+    </div>
+    <div class="sw-display" id="cd-display">05:00</div>
+    <div class="cd-progress-bar"><progress id="cd-progress-fill" max="100" value="100"></progress></div>
+    <div class="sw-controls">
+      <button class="btn-amber sw-btn" id="cd-start">Start</button>
+      <button class="delete-btn delete-btn-inline sw-btn" id="cd-reset" title="Reset countdown" aria-label="Reset countdown">
+        <span class="delete-btn-trash" aria-hidden="true"></span>
+        <span class="delete-btn-text">Reset</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NOTES ══════════════════════════════════════════════════════════════════ -->
+<div id="view-notes" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Notes</span>
+    <button class="icon-btn" id="notes-sidebar-toggle" title="Toggle note list">☰</button>
+    <button class="icon-btn" id="notes-new-btn" title="New note">+</button>
+  </div>
+  <div class="notes-layout">
+    <aside class="notes-sidebar" id="notes-sidebar">
+      <div class="notes-sidebar-top">
+        <input type="text" id="notes-search" placeholder="Search notes">
+        <button class="btn-amber notes-sidebar-new" id="notes-sidebar-new-btn">New</button>
+      </div>
+      <div id="notes-list"></div>
+    </aside>
+    <main class="notes-main">
+      <div class="notes-editor-head">
+        <input type="text" id="notes-title-input" placeholder="Untitled note">
+        <div class="notes-save-state" id="notes-save-state">Saved</div>
+      </div>
+      <div class="notes-toolbar" id="notes-toolbar">
+        <button data-cmd="bold" title="Bold"><b>B</b></button>
+        <button data-cmd="italic" title="Italic"><i>I</i></button>
+        <button data-cmd="underline" title="Underline"><u>U</u></button>
+        <button data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+        <span class="toolbar-sep">|</span>
+        <button data-cmd="insertUnorderedList" title="Bullet list">•</button>
+        <button data-cmd="insertOrderedList" title="Numbered list">1.</button>
+        <span class="toolbar-sep">|</span>
+        <button data-heading="h1" title="Heading 1">H1</button>
+        <button data-heading="h2" title="Heading 2">H2</button>
+        <button data-heading="h3" title="Heading 3">H3</button>
+        <span class="toolbar-sep">|</span>
+        <button data-cmd="code" title="Code">&lt;/&gt;</button>
+        <span class="toolbar-sep">|</span>
+        <div class="highlight-picker">
+          <button class="highlight-btn" title="Highlight">🖊</button>
+          <div class="highlight-colors">
+            <button data-color="#fbbf24" class="highlight-swatch swatch-gold"></button>
+            <button data-color="#34d399" class="highlight-swatch swatch-green"></button>
+            <button data-color="#60a5fa" class="highlight-swatch swatch-blue"></button>
+            <button data-color="#f87171" class="highlight-swatch swatch-red"></button>
+            <button data-color="transparent" title="Remove highlight">✕</button>
+          </div>
+        </div>
+        <span class="toolbar-sep">|</span>
+        <button id="notes-export-md" title="Export Markdown">↓MD</button>
+        <button id="notes-export-txt" title="Export Text">↓TXT</button>
+      </div>
+      <div id="notes-editor" contenteditable="true" spellcheck="true" data-placeholder="Start typing..."></div>
+      <div class="notes-meta" id="notes-meta"></div>
+    </main>
+  </div>
+</div>
+
+<!-- ══ LOCK IN ════════════════════════════════════════════════════════════════ -->
+<div id="view-lock-in" class="view tool-view">
+  <div class="tool-topbar">
+    <button class="back-btn" data-back>‹ Home</button>
+    <span class="tool-title">Focus Mode</span>
+    <button class="icon-btn delete-btn delete-btn-compact" id="lock-history-clear-btn" title="Clear session history" aria-label="Clear session history">
+      <span class="delete-btn-trash" aria-hidden="true"></span>
+      <span class="delete-btn-text">Clear</span>
+    </button>
+  </div>
+  <div id="lock-in-content">
+    <div id="lock-mode-selector">
+      <h3 class="section-kicker">Set your focus session</h3>
+      <div class="lock-mode-cards">
+        <div class="lock-mode-card" data-mode="guided">
+          <div class="lock-mode-icon">⏳</div>
+          <h4>Guided Focus</h4>
+          <p>Keeps your study tab active and warns you on blocked pages.</p>
+        </div>
+        <div class="lock-mode-card" data-mode="total">
+          <div class="lock-mode-icon">⛔</div>
+          <h4>Total Block</h4>
+          <p>Does not allow distracting websites or breaks until time is over.</p>
+        </div>
+      </div>
+      <div class="focus-duration">
+        <label for="lock-duration-mins">Focus time</label>
+        <div class="focus-duration-row">
+          <input type="number" id="lock-duration-mins" value="50" min="5" max="480">
+          <span>minutes</span>
+        </div>
+      </div>
+      <div class="lock-whitelist-section" id="lock-whitelist-section">
+        <label>Allowed websites during focus mode</label>
+        <textarea id="lock-whitelist" rows="3" placeholder="https://docs.google.com&#10;https://notion.so&#10;https://chatgpt.com"></textarea>
+      </div>
+      <div class="focus-tool-options">
+        <label class="focus-option">
+          <input type="checkbox" id="lock-allow-ai">
+          <span>Allow AI panel during focus mode</span>
+        </label>
+        <label class="focus-option">
+          <input type="checkbox" id="lock-allow-youtube">
+          <span>Allow OWN-Focus YouTube during focus mode</span>
+        </label>
+      </div>
+      <p class="focus-session-note">Your current study tab stays protected. Other distracting pages are blocked until the timer finishes.</p>
+      <button class="btn-amber lock-start-btn" id="lock-start-btn">Start Focus Mode</button>
+    </div>
+    <div class="lock-active-view hidden" id="lock-active-view">
+      <div class="lock-active-icon" id="lock-active-icon">⛔</div>
+      <div class="lock-mode-label" id="lock-mode-label">Focus Mode Active</div>
+      <div class="lock-timer" id="lock-timer">00:00</div>
+      <p class="lock-tip" id="lock-tip">Distracting websites stay blocked until your timer ends.</p>
+      <button class="btn-danger" id="lock-end-btn">End Session</button>
+    </div>
+    <div class="lock-history-section">
+      <h4>Session History</h4>
+      <div id="lock-history-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCRIPTS ════════════════════════════════════════════════════════════════ -->
+<script src="lib/pdf.min.js"></script>
+<script src="sidepanel.js"></script>
+<script src="tools/notes.js"></script>
+<script src="tools/pomodoro.js"></script>
+<script src="tools/stopwatch-timer.js"></script>
+<script src="tools/desmos.js"></script>
+<script src="tools/ai-chat.js"></script>
+<script src="tools/youtube.js"></script>
+<script src="tools/pdf-viewer.js"></script>
+<script src="tools/clipboard.js"></script>
+<script src="tools/todo.js"></script>
+<script src="tools/lock-in.js"></script>
+</body>
+</html>

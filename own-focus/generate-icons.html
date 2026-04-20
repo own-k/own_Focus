@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate OWN-Focus Icons</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, sans-serif; padding: 24px; background: #f5f3ef; color: #141111; }
+    button { border: 0; border-radius: 999px; padding: 12px 18px; background: #171111; color: #fff; font-weight: 700; cursor: pointer; }
+    p { max-width: 560px; line-height: 1.6; color: #6d6560; }
+  </style>
+</head>
+<body>
+  <button onclick="downloadAll()">Download 16 / 48 / 128</button>
+  <p>Uses the premium OWN-Focus source mark in <code>icons/icon-source.svg</code> and exports exact PNG sizes for the extension manifest.</p>
+  <script>
+    async function downloadAll() {
+      const source = await fetch('icons/icon-source.svg').then((res) => res.text());
+      const img = new Image();
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+      await img.decode();
+
+      [16, 48, 128].forEach((size) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, size, size);
+        const link = document.createElement('a');
+        link.download = `icons${size}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
