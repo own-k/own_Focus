@@ -35,10 +35,5 @@ OWN_Focus is a Chrome extension that gives students an all-in-one study workspac
 3. Click **Load unpacked**
 4. Select this project folder
 
-## Permissions Note
-
-The extension requests tabs, storage, scripting, notifications, and specific host permissions for supported web tools (AI chats, YouTube, Desmos, and related domains).
-
-## License
-
-MIT (or your preferred license).
+## Screenshots:
+<img width="750" height="1606" alt="Shot Google Chrome111328" src="https://github.com/user-attachments/assets/d02aeb6e-ada0-48f3-bc40-3cc9e7d0e424" />
